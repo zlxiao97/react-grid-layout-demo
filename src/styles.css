@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+}
+
+.dev-helper .react-grid-item {
+  border: 1px dotted red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
