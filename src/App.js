@@ -14,7 +14,14 @@ const layouts = {
       w: 5,
       h: 3
     },
-    { i: "r2", x: 6, y: 2, w: 5, h: 3 }
+    {
+      i: "r2",
+      x: 6,
+      y: 3,
+      w: 5,
+      h: 3,
+      static: true // 如果要通过y指定间距，需要添加static:true
+    }
   ],
   xl: [
     { i: "l1", x: 1, y: 0, w: 2, h: 2, resizeHandles: ["e"] },
@@ -51,7 +58,7 @@ const layouts = {
       y: 0,
       w: 2,
       h: 2,
-      resizeHandles: ["s"] // 利用断点可以配置个性化的
+      resizeHandles: ["s"] // 利用断点可以配置个性化的 resizeHandles
     },
     { i: "m1", x: 0, y: 2, w: 2, h: 2 },
     { i: "r1", x: 0, y: 4, w: 2, h: 2 },
@@ -62,12 +69,14 @@ const layouts = {
 
 export default function App() {
   return (
-    <PageLayout layouts={layouts}>
-      <div key="l1">l1</div>
-      <div key="m1">m1</div>
-      <div key="r1">r1</div>
-      <div key="l2">l2</div>
-      <div key="r2">r2</div>
-    </PageLayout>
+    <>
+      <PageLayout layouts={layouts}>
+        <div key="l1">l1</div>
+        <div key="m1">m1</div>
+        <div key="r1">r1</div>
+        <div key="l2">l2</div>
+        <div key="r2">r2</div>
+      </PageLayout>
+    </>
   );
 }

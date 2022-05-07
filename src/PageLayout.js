@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { Responsive, WidthProvider } from "react-grid-layout";
+import InfoPanel from "./InfoPanel";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
 export default (props) => {
+  const [currentBreakPoints, setCurrentBreakPoints] = useState("");
   const defaultProps = {
     className: "dev-helper",
     isDraggable: true,
@@ -11,11 +14,19 @@ export default (props) => {
     cols: { xxl: 12, xl: 10, lg: 8, md: 6, sm: 4, xs: 2 },
     rowHeight: 100, // 比较符合直觉
     margin: [0, 0],
-    containerPadding: [0, 0]
+    containerPadding: [0, 0],
+    onBreakpointChange: setCurrentBreakPoints
   };
+  const currentCols = defaultProps.cols[currentBreakPoints] || "";
   return (
-    <ResponsiveGridLayout {...defaultProps} {...props}>
-      {props.children}
-    </ResponsiveGridLayout>
+    <>
+      <InfoPanel
+        currentBreakPoints={currentBreakPoints}
+        currentCols={currentCols}
+      />
+      <ResponsiveGridLayout {...defaultProps} {...props}>
+        {props.children}
+      </ResponsiveGridLayout>
+    </>
   );
 };
